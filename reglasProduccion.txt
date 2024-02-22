@@ -1,0 +1,21 @@
+Programa -> Inicio  Codigo  Fin
+Inicio -> tknInicio  tknCorA
+Fin -> tknCorB  tknFin
+Codigo -> Sentencia | (Sentencia codigo )
+
+ParentesisUnicoValor -> tknParA  OperandoIO  tknParenB
+ParentesisDobleValor -> tknParenA  Operando  tknComa  Operando  toknParenB
+Operando -> tknNum | tknReal | Operaciones | tknVar
+#########OperandoIO -> tknNum | tknReal | tknVar
+LeerPrint -> tknLeer | tknPrint
+OperacionesIO-> LeerPrint ParentesisUnicoValor
+Operaciones -> (tknSum | tknRes | tknMul | tknDiv) ParentesisDobleValor
+
+varAssign -> tknVar  tknAsig  (tknReal | tknNum | tknVar)
+varComa -> tknvar  tknComa
+varAsigComa -> varAssign  tknComa
+
+finLIsta -> varAssign | tknVar
+varList -> tknVar | varAssign | (varList  varComa) | (varList  varAsigComa) | (varList  finLIsta)
+DeclararionVar -> (tknFloat | tknInt)  varList
+Sentencia -> (DeclararionVar | Operaciones | OperacionesIO | varAssign) tknSemicolon
